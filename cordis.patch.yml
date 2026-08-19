@@ -1,0 +1,17 @@
+# dsh-spend-plus bundle patch — mounts BOTH halves in one package:
+#   1. `usage-stats` — the dsh-spend usage/cost dashboard (Typert Remote service).
+#   2. `balance`     — the DeepSeek account balance + session-cost readout
+#                      (merged from dsh-balance-meter, served via /api/balance).
+- insert:
+    - id: usage-stats
+      name: 'dsh-spend-plus'
+      config:
+        currency: USD            # CNY (¥) or USD ($)
+        maxSessions: 20
+        maxRecentCalls: 50
+        seriesHours: 168
+        refreshSeconds: 30
+    - id: balance
+      name: 'dsh-spend-plus/balance'
+      config:
+        refreshIntervalSeconds: 30
